@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Compound\GetCompoundQuery\" />
+    <Folder Include="Element\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DotNatrium.Helpers\DotNatrium.Helpers.csproj" />
+    <ProjectReference Include="..\DotNatrium.Models\DotNatrium.Models.csproj" />
+  </ItemGroup>
+
+</Project>
