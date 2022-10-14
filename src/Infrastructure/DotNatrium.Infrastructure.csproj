@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Compound\GetCompoundQuery\" />
+    <Folder Include="Compound\GetCompound\" />
     <Folder Include="Element\" />
   </ItemGroup>
 

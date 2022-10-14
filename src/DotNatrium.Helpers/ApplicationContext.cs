@@ -49,23 +49,30 @@ namespace DotNatrium.Helpers
             #endregion
             #region EntityCompound
             modelBuilder.Entity<Compound>()
-                .HasKey(c => c.Id);
+                .HasKey(c => c.DataId);
+            modelBuilder.Entity<Compound>()
+                .HasOne(c => c.Data)
+                .WithOne();
             #endregion
             #region EnittyElement
             modelBuilder.Entity<Element>()
-                .HasKey(e => e.Id);
+                .HasKey(e => e.DataId);
+            modelBuilder.Entity<Element>()
+                .HasOne(e => e.Data)
+                .WithOne();
             #endregion
             #region EntityCompundElement
             modelBuilder.Entity<CompoundElement>()
-                .HasKey(ce => ce.Id);
-            /*modelBuilder.Entity<CompoundElement>()
+                .HasKey(ce => ce.ElementId);
+            modelBuilder.Entity<CompoundElement>()
+                .HasKey(ce => ce.CompoundId);
+            modelBuilder.Entity<CompoundElement>()
                 .HasOne(ce => ce.Element)
-                .WithMany()
+                .WithOne()
                 .OnDelete(DeleteBehavior.SetNull);
             modelBuilder.Entity<CompoundElement>()
                 .HasOne(ce => ce.Compound)
-                .WithMany()
-                .HasForeignKey(ce => ce.CompoundId);*/
+                .WithOne();
             #endregion
             #region EntityElementChemicalReaction
             modelBuilder.Entity<ElementChemicalReaction>()

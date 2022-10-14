@@ -1,8 +1,8 @@
 using DotNatrium.Helpers;
+using DotNatrium.Infrastructure.Compound.AddCompound;
+using DotNatrium.Infrastructure.Compound.GetCompound;
 using DotNatrium.Models;
-using Infrastructure.Compound.GetCompoundQuery;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.Extensions.Configuration;
 
 namespace DotNatrium.Tests
@@ -11,6 +11,7 @@ namespace DotNatrium.Tests
     public class CompoundTests
     {
         private GetCompoundQueryHandler _handler;
+        private AddCompoundQueryHandler _addHandler;
         private ApplicationContext _context;
 
         public CompoundTests()
@@ -22,8 +23,9 @@ namespace DotNatrium.Tests
             _context.Database.EnsureCreated();
             _handler = new GetCompoundQueryHandler(_context);
         }
+
         [TestMethod]
-        public void GetCompoundDataTest()
+        public async void GetCompoundDataTest()
         {
             Compound expectedCompound = new()
             {
@@ -33,8 +35,9 @@ namespace DotNatrium.Tests
                     Symbol = "Na2CO3"
                 }
             };
-            var actualCompound = _handler.GetCompound(new GetCompoundQueryRequest { Id = 1 }, CancellationToken.None);
-            if (actualCompound is null) Assert.Fail();
+            var actualCompound =
+                await _handler.GetCompound(new GetCompoundQuery { DataId = 4 }, CancellationToken.None);
+            if (actualCompound?.Data is null) Assert.Fail();
             Assert.AreEqual(expectedCompound.Data.Name, actualCompound.Data.Name);
         }
     }

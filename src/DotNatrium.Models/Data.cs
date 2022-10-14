@@ -10,8 +10,10 @@
 
         public string Description { get; set; } = "";
 
-        public int Count {get; set; }
+        public double Count {get; set; }
 
         public int TypeMeasurementId {get; set;}
+
+        public virtual TypeMeasurement TypeMeasurement { get; set; } = null!;
     }
 }
